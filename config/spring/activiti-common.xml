@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="commonService" class="com.ces.common.service.impl.CommonServiceImpl" parent="baseService">
+		<property name="processEngine" ref="processEngine" />
+		<property name="repositoryService" ref="repositoryService" />
+		<property name="runtimeService" ref="runtimeService" />
+		<property name="formService" ref="formService" />
+		<property name="identityService" ref="identityService" />
+		<property name="taskService" ref="taskService" />
+		<property name="historyService" ref="historyService" />
+	</bean>
+
+	<bean id="commonAction" class="com.ces.common.action.CommonAction" parent="baseAction">
+		<property name="processEngine" ref="processEngine" />
+		<property name="repositoryService" ref="repositoryService" />
+		<property name="runtimeService" ref="runtimeService" />
+		<property name="formService" ref="formService" />
+		<property name="identityService" ref="identityService" />
+		<property name="taskService" ref="taskService" />
+		<property name="historyService" ref="historyService" />
+	</bean>
+
+</beans>

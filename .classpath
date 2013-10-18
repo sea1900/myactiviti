@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src_me"/>
+	<classpathentry kind="src" path="config"/>
+	<classpathentry kind="src" path="src_system"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="src" path="src_general"/>
+	<classpathentry kind="src" path="src_dynamic"/>
+	<classpathentry kind="src" path="src_formkey"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="src_process"/>
+	<classpathentry kind="src" path="src_common"/>
+	<classpathentry kind="src" path="src_leave"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="src" path="src_framework"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_6_CONTAINER"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>

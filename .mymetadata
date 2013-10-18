@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="MyActiviti"
+  id="myeclipse.1379826860953"
+  context-root="/MyActiviti"
+  j2ee-spec="6.0"
+  archive="MyActiviti.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

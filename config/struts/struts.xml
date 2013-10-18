@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" 
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 支持通配符*的动态方法调用  -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<!-- 指定Struts 2默认的ObjectFactory Bean，交由spring来管理action，默认值是spring --> 
+	<constant name="struts.objectFactory" value="spring"/> 
+	<constant name="struts.custom.i18n.resources"  
+        value="globalMessages">   
+    </constant>   
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>   
+    
+     <!-- 所有包的父包 -->
+  <package name="global" extends="struts-default,json-default" abstract="true">
+    <global-results>
+      <!-- 生成JSON，空值不生成，不是空的如果不想生成使用注释@JSON(serialize=false) -->
+      <result type="json">
+        <!-- <param name="excludeNullProperties">true</param>-->
+      </result>
+      
+      <!-- 下载 -->
+      <result name="download" type="stream">
+        <!--<param name="contentType">${contentType}</param>-->
+        <param name="inputName">inputStream</param>
+        <param name="bufferSize">4096</param>
+        <param name="contentDisposition">attachment;filename="${fileName}"</param>
+      </result>
+      
+      <!-- 输出 -->
+      <result name="output" type="plainText">
+        <param name="charSet">UTF-8</param>
+        <param name="location">/output.jsp</param>
+      </result>
+      
+      <!-- 强跳 -->
+      <result name="jump" type="chain">
+        <param name="actionName">${actionName}</param>
+        <param name="namespace">${nameSpace}</param>
+      </result>
+      
+      <!-- 跳到指定JSP -->
+      <result name="forwardJsp">${forwardJsp}</result>
+      <result name="redirectJsp" type="redirect">${redirectJsp}</result>
+      
+      <result name="list">{1}_list.jsp</result>
+      <result name="grid">{1}_grid.jsp</result>
+      <result name="view">{1}_view.jsp</result>
+      <result name="add">{1}_add.jsp</result>
+      <result name="edit">{1}_edit.jsp</result>
+    </global-results>
+    
+  </package>
+  
+	<package name="src" extends="global">
+		<action name="login" class="loginAction" method="index">
+			<result name="login">/views/login.jsp</result>
+		</action>
+		
+		<action name="*_*_*" class="{1}Action"
+			method="{2}">
+			<result name="success" type="json">
+				<param name="noCache">true</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="list">/{3}/{1}_list.jsp</result>
+			<result name="welcome" >/views/main/index.jsp</result>
+			<result name="login" >/views/login.jsp</result>
+		</action>
+		
+	</package>
+</struts>    

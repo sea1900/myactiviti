@@ -16,7 +16,6 @@ public class CommonAction extends BaseAction {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
 	protected ProcessEngine processEngine;
 	protected RepositoryService repositoryService;
 	protected RuntimeService runtimeService;

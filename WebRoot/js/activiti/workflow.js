@@ -15,7 +15,7 @@ function graphTrace(options) {
         $('<div/>', {
             'id': 'imgDialog',
             title: '此对话框显示的图片是由引擎自动生成的，并用红色标记当前的节点',
-            html: "<img src='" + ctx + '/workflow/process/trace/auto/' + opts.pid + "' />"
+            html: "<img src='" + ctx + '/workflow_readResource.action?executionId=' + opts.pid + "' />"
         }).appendTo('body').dialog({
             modal: true,
             resizable: false,
@@ -26,8 +26,8 @@ function graphTrace(options) {
     });
 
     // 获取图片资源
-    var imageUrl = ctx + "/workflow/resource/process-instance?pid=" + opts.pid + "&type=image";
-    $.getJSON(ctx + '/workflow/process/trace?pid=' + opts.pid, function(infos) {
+    var imageUrl = ctx + "/workflow_loadByProcessInstance.action?pid=" + opts.pid + "&type=image";
+    $.getJSON(ctx + '/workflow_traceProcess.action?pid=' + opts.pid, function(infos) {
 
         var positionHtml = "";
 

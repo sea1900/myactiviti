@@ -3,11 +3,10 @@ package com.ces.leave.service;
 import java.util.List;
 import java.util.Map;
 
-import me.kafeitu.demo.activiti.util.Page;
-
 import org.activiti.engine.runtime.ProcessInstance;
 
 import com.ces.common.service.CommonService;
+import com.ces.common.webbean.Page;
 import com.ces.leave.entity.Leave;
 
 public interface LeaveService extends CommonService {

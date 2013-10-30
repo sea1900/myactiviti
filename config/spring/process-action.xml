@@ -9,7 +9,15 @@
 
 	<bean id="workflowAction" class="com.ces.process.action.WorkFlowAction"
 		scope="prototype" parent="commonAction">
-		
+		<property name="traceService" ref="workflowTraceService"></property>
+		<property name="processDefinitionService" ref="processDefinitionService"></property>
 	</bean>
 
+	<bean id="modelAction" class="com.ces.process.action.ModelAction"
+		scope="prototype" parent="commonAction">
+	</bean>
+
+	<bean id="processInstanceAction" class="com.ces.process.action.ProcessInstanceAction"
+		scope="prototype" parent="commonAction">
+	</bean>
 </beans>

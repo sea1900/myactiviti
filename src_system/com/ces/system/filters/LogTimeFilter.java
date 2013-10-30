@@ -31,7 +31,6 @@ public class LogTimeFilter implements Filter {
 		HttpServletResponse respone = (HttpServletResponse) servletResponse;
 		HttpSession session = request.getSession();
 
-		System.out.println(request.getRequestURI());
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
 

@@ -10,6 +10,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:forward page="${path }/login"></jsp:forward>
+    <jsp:forward page="${path }/login.action"></jsp:forward>
   </body>
 </html>

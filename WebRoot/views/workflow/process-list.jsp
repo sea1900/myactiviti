@@ -45,9 +45,9 @@
 	<fieldset id="deployFieldset" style="display: none">
 		<legend>部署新流程</legend>
 		<div><b>支持文件格式：</b>zip、bar、bpmn、bpmn20.xml</div>
-		<form action="${ctx }/workflow/deploy" method="post" enctype="multipart/form-data">
-			<input type="file" name="file" />
-			<input type="submit" value="Submit" />
+		<form action="${ctx }/workflow_deploy.action" method="post" enctype="multipart/form-data">
+			<input type="file" name="upload" />
+			<input type="submit" value="部署" />
 		</form>
 	</fieldset>
 	<table width="100%" class="need-border">
@@ -75,20 +75,20 @@
 					<td>${process.name }</td>
 					<td>${process.key }</td>
 					<td>${process.version }</td>
-					<td><a target="_blank" href='${ctx }/workflow/resource/read?processDefinitionId=${process.id}&resourceType=xml'>${process.resourceName }</a></td>
-					<td><a target="_blank" href='${ctx }/workflow/resource/read?processDefinitionId=${process.id}&resourceType=image'>${process.diagramResourceName }</a></td>
+					<td><a target="_blank" href='${ctx }/workflow_loadByDeployment.action?processDefinitionId=${process.id}&resourceType=xml'>${process.resourceName }</a></td>
+					<td><a target="_blank" href='${ctx }/workflow_loadByDeployment.action?processDefinitionId=${process.id}&resourceType=image'>${process.diagramResourceName }</a></td>
 					<td>${deployment.deploymentTime }</td>
 					<td>${process.suspended} |
 						<c:if test="${process.suspended }">
-							<a href="processdefinition/update/active/${process.id}">激活</a>
+							<a href="${ctx }/workflow_updateState.action?state=active&processDefinitionId=${process.id}">激活</a>
 						</c:if>
 						<c:if test="${!process.suspended }">
-							<a href="processdefinition/update/suspend/${process.id}">挂起</a>
+							<a href="${ctx }/workflow_updateState.action?state=suspend&processDefinitionId=${process.id}">挂起</a>
 						</c:if>
 					</td>
 					<td>
-                        <a href='${ctx }/workflow/process/delete?deploymentId=${process.deploymentId}'>删除</a>
-                        <a href='${ctx }/workflow/process/convert-to-model/${process.id}'>转换为Model</a>
+                        <a href='${ctx }/workflow_delete.action?deploymentId=${process.deploymentId}'>删除</a>
+                        <a href='${ctx }/workflow_convertToModel.action?processDefinitionId=${process.id}'>转换为Model</a>
                     </td>
 				</tr>
 			</c:forEach>

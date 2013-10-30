@@ -1,11 +1,12 @@
 package com.ces.leave.service.impl;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
 import me.kafeitu.demo.activiti.service.oa.leave.LeaveWorkflowService;
-import me.kafeitu.demo.activiti.util.Page;
 
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
@@ -18,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ces.common.service.impl.CommonServiceImpl;
+import com.ces.common.webbean.Page;
 import com.ces.leave.entity.Leave;
 import com.ces.leave.service.LeaveService;
 
@@ -33,6 +35,10 @@ public class LeaveServiceImpl extends CommonServiceImpl implements LeaveService 
 	 */
 	public ProcessInstance startWorkflow(Leave entity,
 			Map<String, Object> variables) {
+		Calendar c = Calendar.getInstance();
+		entity.setApplyTime(new Timestamp(c.getTimeInMillis()));
+		entity.setRealityStartTime(new Timestamp(c.getTimeInMillis()));
+		entity.setRealityEndTime(new Timestamp(c.getTimeInMillis()));
 		save(entity);
 		logger.debug("save entity: {}", entity);
 		String businessKey = entity.getId().toString();

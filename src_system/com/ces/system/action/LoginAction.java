@@ -97,9 +97,10 @@ public class LoginAction extends CommonAction {
 			cookieUtils.delCookie(request, response, "user");
 		} catch (Exception e) {
 			logger.error(e);
-			return ERROR;
 		}
-		return SUCCESS;
+		
+		setForwardJsp("/views/login.jsp");
+		return FORWARD;
 	}
 
 	public String getStrlogintip() {

@@ -75,7 +75,7 @@
 				<prop key="page*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="has*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="is*">PROPAGATION_REQUIRED,readOnly</prop>
-				<prop key="check*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="trace*">PROPAGATION_REQUIRED,readOnly</prop>
 
 				<prop key="save*">PROPAGATION_REQUIRED,-Exception</prop>
 				<prop key="create*">PROPAGATION_REQUIRED,-Exception</prop>

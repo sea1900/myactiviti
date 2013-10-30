@@ -18,6 +18,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
 import com.ces.common.service.impl.CommonServiceImpl;
+import com.ces.process.service.ProcessDefinitionService;
 
 /**
  * 工作流中流程以及流程实例相关Service
@@ -26,7 +27,8 @@ import com.ces.common.service.impl.CommonServiceImpl;
  * 
  */
 
-public class WorkflowProcessDefinitionService extends CommonServiceImpl {
+public class ProcessDefinitionServiceImpl extends CommonServiceImpl implements
+		ProcessDefinitionService {
 
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -37,6 +39,7 @@ public class WorkflowProcessDefinitionService extends CommonServiceImpl {
 	 *            流程实例ID
 	 * @return 流程定义对象{@link ProcessDefinition}
 	 */
+	@Override
 	public ProcessDefinition findProcessDefinitionByPid(String processInstanceId) {
 		HistoricProcessInstance historicProcessInstance = historyService
 				.createHistoricProcessInstanceQuery()
@@ -54,6 +57,7 @@ public class WorkflowProcessDefinitionService extends CommonServiceImpl {
 	 *            流程定义对象ID
 	 * @return 流程定义对象{@link ProcessDefinition}
 	 */
+	@Override
 	public ProcessDefinition findProcessDefinition(String processDefinitionId) {
 		ProcessDefinition processDefinition = repositoryService
 				.createProcessDefinitionQuery()
@@ -86,6 +90,7 @@ public class WorkflowProcessDefinitionService extends CommonServiceImpl {
 	 *            流程定义KEY
 	 * @throws Exception
 	 */
+	@Override
 	public void deployFromClasspath(String exportDir, String... processKey)
 			throws Exception {
 		ResourceLoader resourceLoader = new DefaultResourceLoader();
@@ -163,6 +168,7 @@ public class WorkflowProcessDefinitionService extends CommonServiceImpl {
 	 * @throws Exception
 	 * @see #deployFromClasspath
 	 */
+	@Override
 	public void redeploy(String exportDir, String... processKey)
 			throws Exception {
 		this.deployFromClasspath(exportDir, processKey);
@@ -174,6 +180,7 @@ public class WorkflowProcessDefinitionService extends CommonServiceImpl {
 	 * @throws Exception
 	 * @see #deployFromClasspath
 	 */
+	@Override
 	public void deployAllFromClasspath(String exportDir) throws Exception {
 		this.deployFromClasspath(exportDir);
 	}

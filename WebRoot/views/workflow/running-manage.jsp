@@ -1,3 +1,4 @@
+<%@page import="org.activiti.engine.ProcessEngine"%>
 <%@page import="me.kafeitu.demo.activiti.util.ProcessDefinitionCache,org.activiti.engine.RepositoryService"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -31,7 +32,8 @@
 
 <body>
 	<%
-	RepositoryService repositoryService = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext()).getBean(org.activiti.engine.RepositoryService.class);
+	ProcessEngine processEngine = (ProcessEngine)WebApplicationContextUtils.getWebApplicationContext(session.getServletContext()).getBean("processEngine");
+	RepositoryService repositoryService = processEngine.getRepositoryService();
 	ProcessDefinitionCache.setRepositoryService(repositoryService);
 	%>
 	<c:if test="${not empty message}">
@@ -63,10 +65,10 @@
 			<td>${p.suspended }</td>
 			<td>
 				<c:if test="${p.suspended }">
-					<a href="update/active/${p.processInstanceId}">激活</a>
+					<a href="${ctx }/processInstance_updateState.action?state=active&processInstanceId=${p.processInstanceId}">激活</a>
 				</c:if>
 				<c:if test="${!p.suspended }">
-					<a href="update/suspend/${p.processInstanceId}">挂起</a>
+					<a href="${ctx }/processInstance_updateState.action?state=suspend&processInstanceId=${p.processInstanceId}">挂起</a>
 				</c:if>
 			</td>
 		</tr>

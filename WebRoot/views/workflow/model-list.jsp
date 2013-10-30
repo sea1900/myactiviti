@@ -81,16 +81,16 @@
 					<td>${model.metaInfo}</td>
 					<td>
 						<a href="${ctx}/service/editor?id=${model.id}" target="_blank">编辑</a>
-						<a href="${ctx}/workflow/model/deploy/${model.id}">部署</a>
-						<a href="${ctx}/workflow/model/export/${model.id}" target="_blank">导出</a>
-                        <a href="${ctx}/workflow/model/delete/${model.id}">删除</a>
+						<a href="${ctx}/model_deploy.action?modelId=${model.id}">部署</a>
+						<a href="${ctx}/model_export.action?modelId=${model.id}" target="_blank">导出</a>
+                        <a href="${ctx}/model_delete.action?modelId=${model.id}">删除</a>
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<div id="createModelTemplate" title="创建模型" class="template">
-        <form id="modelForm" action="${ctx}/workflow/model/create" target="_blank" method="post">
+        <form id="modelForm" action="${ctx}/model_create.action" target="_blank" method="post">
 		<table>
 			<tr>
 				<td>名称：</td>

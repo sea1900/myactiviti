@@ -4,10 +4,10 @@
 	<li>
 		<a rel="#">请假（普通表单）</a>
 		<ul>
-			<li><a rel="oa/leave/apply">请假申请(普通)</a></li>
-			<li><a rel="oa/leave/list/task">请假办理(普通)</a></li>
-			<li><a rel="oa/leave/list/running">运行中流程(普通)</a></li>
-			<li><a rel="oa/leave/list/finished">已结束流程(普通)</a></li>
+			<li><a rel="leave_apply.action">请假申请(普通)</a></li>
+			<li><a rel="leave_taskList.action">请假办理(普通)</a></li>
+			<li><a rel="leave_runningList.action">运行中流程(普通)</a></li>
+			<li><a rel="leave_finishedList.action">已结束流程(普通)</a></li>
 		</ul>
 	</li>
 	<li>
@@ -32,8 +32,8 @@
 		<a rel='#'>流程管理</a>
 		<ul>
 			<li><a rel='workflow_processList.action'>流程定义及部署管理</a></li>
-			<li><a rel='workflow/processinstance/running'>运行中流程</a></li>
-			<li><a rel='workflow/model/list'>模型工作区</a></li>
+			<li><a rel='processInstance_running.action'>运行中流程</a></li>
+			<li><a rel='model_modelList.action'>模型工作区</a></li>
 		</ul>
 	</li>
 </ul>

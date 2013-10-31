@@ -31,7 +31,7 @@ public class LoginAction extends CommonAction {
 	// 是否记住用户名的标志位
 	private Boolean remUser;
 	
-	private CookieUtils cookieUtils;
+	private CookieUtils cookieUtils = new CookieUtils();
 
 	public Boolean getAutoLogin() {
 		return autoLogin;
@@ -96,6 +96,7 @@ public class LoginAction extends CommonAction {
 
 			cookieUtils.delCookie(request, response, "user");
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error(e);
 		}
 		

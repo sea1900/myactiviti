@@ -68,7 +68,7 @@
 					<td>${pi.suspended ? "已挂起" : "正常" }；<b title='流程版本号'>V: ${leave.processDefinition.version }</b></td>
 					<td>
 						<c:if test="${empty task.assignee }">
-							<a class="claim" href="${ctx }/oa/leave/task/claim/${task.id}">签收</a>
+							<a class="claim" href="${ctx }/leave_claim.action?taskId=${task.id}">签收</a>
 						</c:if>
 						<c:if test="${not empty task.assignee }">
 							<%-- 此处用tkey记录当前节点的名称 --%>

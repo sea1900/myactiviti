@@ -1,6 +1,7 @@
 package com.ces.framework.json.util;
 
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
 
@@ -14,15 +15,23 @@ import net.sf.json.util.CycleDetectionStrategy;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
+/**
+ * 
+ * json格式的转换类<br/>
+ * <br/>
+ * 可能出现的问题:原始转换时,注意有Date类型字段的对象转换问题 ,原因:
+ * 这是因为bean里有Date字段，且从数据库里读出来的是{@link java.sql.Date}赋值给了{@link java.util.Date},
+ * 转化成JSONArray时出错解决：可以在从数据库读出Date时直接写成：new
+ * java.util.Date(rs.getDate("date").getTime)<br/>
+ * <br/>
+ * 2.0添加支持对java.sql.Timestamp对象的转换支持
+ * 
+ * @author hc
+ * @version 2.0
+ */
 public class JsonConverter {
 	private final static Logger log = Logger.getLogger(JsonConverter.class);
 
-	/*
-	 * 可能出现的问题:原始转换时,注意有Date类型字段的对象转换问题 ,原因:
-	 * 这是因为bean里有Date字段，且从数据库里读出来的是java.sql.Date赋值给了java.util.Date,
-	 * 转化成JSONArray时出错解决：可以在从数据库读出Date时直接写成：new
-	 * java.util.Date(rs.getDate("date").getTime)
-	 */
 	/**
 	 * 将对象转换为json格式(未处理时间格式)
 	 * 
@@ -151,8 +160,12 @@ public class JsonConverter {
 		if (StringUtils.isNotBlank(datePattern)) {
 			jsonConfig.registerJsonValueProcessor(Date.class,
 					new DateJsonValueProcessor(datePattern));
+			jsonConfig.registerJsonValueProcessor(Timestamp.class,
+					new DateJsonValueProcessor(datePattern));
 		} else {
 			jsonConfig.registerJsonValueProcessor(Date.class,
+					new DateJsonValueProcessor());
+			jsonConfig.registerJsonValueProcessor(Timestamp.class,
 					new DateJsonValueProcessor());
 		}
 		return jsonConfig;

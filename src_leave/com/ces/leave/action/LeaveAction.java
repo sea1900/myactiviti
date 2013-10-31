@@ -1,5 +1,6 @@
 package com.ces.leave.action;
 
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -12,22 +13,21 @@ import org.activiti.engine.ActivitiException;
 import org.activiti.engine.identity.User;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ces.common.action.CommonAction;
 import com.ces.common.utils.PageUtil;
 import com.ces.common.webbean.Page;
+import com.ces.framework.json.util.JsonConverter;
 import com.ces.leave.entity.Leave;
 import com.ces.leave.service.LeaveService;
 
 public class LeaveAction extends CommonAction {
+	private static final long serialVersionUID = 1L;
 
 	private LeaveService leaveService;
 
 	private Leave leave;
+	private Variable var;
 
 	public String apply() {
 		String message = request.getParameter("message");
@@ -92,6 +92,8 @@ public class LeaveAction extends CommonAction {
 
 		session.put("page", page);
 
+		String message = request.getParameter("message");
+		request.setAttribute("message", message);
 		setForwardJsp("/views/oa/leave/taskList.jsp");
 		return FORWARD;
 	}
@@ -129,7 +131,6 @@ public class LeaveAction extends CommonAction {
 	/**
 	 * 签收任务
 	 */
-	@RequestMapping(value = "task/claim/{id}")
 	public String claim() {
 		String taskId = request.getParameter("taskId");
 
@@ -151,47 +152,50 @@ public class LeaveAction extends CommonAction {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "detail/{id}")
-	public String getLeaves() {
+	public String detail() {
 		String id = request.getParameter("id");
-		// Leave leave = leaveManager.getLeave(id);
+		Leave leave = (Leave) leaveService.findEntityById(Leave.class,
+				Long.valueOf(id));
+
+		JsonConverter.beanToJson(leave, response);
 		return null;
 	}
 
 	/**
-	 * 读取详细数据
+	 * 读取带变量的请假信息
 	 * 
-	 * @param id
-	 * @return
 	 */
-	@RequestMapping(value = "detail-with-vars/{id}/{taskId}")
-	@ResponseBody
-	public Leave getLeaveWithVars(@PathVariable("id") Long id,
-			@PathVariable("taskId") String taskId) {
-		// Leave leave = leaveManager.getLeave(id);
-		// Map<String, Object> variables = taskService.getVariables(taskId);
-		// leave.setVariables(variables);
-		return leave;
+	public String detailWithVars() {
+		String leaveId = request.getParameter("leaveId");
+		String taskId = request.getParameter("taskId");
+		Leave leave = (Leave) leaveService.findEntityById(Leave.class,
+				Long.valueOf(leaveId));
+		Map<String, Object> variables = taskService.getVariables(taskId);
+		leave.setVariables(variables);
+
+		JsonConverter.beanToJson(leave, response);
+		return null;
 	}
 
 	/**
 	 * 完成任务
 	 * 
-	 * @param id
-	 * @return
 	 */
-	@RequestMapping(value = "complete/{id}", method = { RequestMethod.POST,
-			RequestMethod.GET })
-	@ResponseBody
-	public String complete(@PathVariable("id") String taskId, Variable var) {
+	public String fulfill() {
+		String taskId = request.getParameter("taskId");
+		PrintWriter out = null;
 		try {
+			out = response.getWriter();
+
 			Map<String, Object> variables = var.getVariableMap();
 			taskService.complete(taskId, variables);
-			return "success";
+			out.print("success");
 		} catch (Exception e) {
 			logger.error("error on complete task {}, variables={}", e);
-			return "error";
+			out.print("error");
 		}
+
+		return null;
 	}
 
 	public void setLeaveService(LeaveService leaveService) {
@@ -204,5 +208,13 @@ public class LeaveAction extends CommonAction {
 
 	public void setLeave(Leave leave) {
 		this.leave = leave;
+	}
+
+	public Variable getVar() {
+		return var;
+	}
+
+	public void setVar(Variable var) {
+		this.var = var;
 	}
 }

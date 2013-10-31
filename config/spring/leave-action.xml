@@ -12,4 +12,8 @@
 		<property name="leaveService" ref="leaveService"></property>
 	</bean>
 
+	<bean id="afterModifyApplyContentProcessor" class="com.ces.leave.listener.AfterModifyApplyContentProcessor">
+		<property name="runtimeService" ref="runtimeService"></property>
+		<property name="leaveService" ref="leaveService"></property>
+	</bean>
 </beans>

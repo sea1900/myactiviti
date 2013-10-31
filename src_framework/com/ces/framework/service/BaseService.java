@@ -113,4 +113,21 @@ public interface BaseService {
 	 */
 	public <T> List<?> findListByHQL(String hql);
 
+	/**
+	 * 保存或修改方法 方法
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	public Object merge(Object entity);
+
+	/**
+	 * 保存或修改方法 方法
+	 * 
+	 * @param entityName
+	 * @param entity
+	 * @return
+	 */
+	public Object merge(String entityName, Object entity);
+
 }

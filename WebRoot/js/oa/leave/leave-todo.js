@@ -32,7 +32,7 @@ var detail = {};
  */
 function loadDetail(id, withVars, callback) {
     var dialog = this;
-    $.getJSON(ctx + '/oa/leave/detail/' + id, function(data) {
+    $.getJSON(ctx + '/leave_detail.action?id=' + id, function(data) {
         detail = data;
         $.each(data, function(k, v) {
 			
@@ -56,7 +56,7 @@ function loadDetail(id, withVars, callback) {
  */
 function loadDetailWithTaskVars(leaveId, taskId, callback) {
     var dialog = this;
-    $.getJSON(ctx + '/oa/leave/detail-with-vars/' + leaveId + "/" + taskId, function(data) {
+    $.getJSON(ctx + '/leave_detailWithVars.action?leaveId=' + leaveId + "&taskId=" + taskId, function(data) {
         detail = data;
         $.each(data, function(k, v) {
             // 格式化日期
@@ -99,10 +99,10 @@ function complete(taskId, variables) {
     });
 	
 	// 发送任务完成请求
-    $.post(ctx + '/oa/leave/complete/' + taskId, {
-        keys: keys,
-        values: values,
-        types: types
+    $.post(ctx + '/leave_fulfill.action?taskId=' + taskId, {
+        "var.keys": keys,
+        "var.values": values,
+        "var.types": types
     }, function(resp) {
 		$.unblockUI();
         if (resp == 'success') {

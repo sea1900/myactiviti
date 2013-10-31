@@ -1,4 +1,5 @@
 <%@page import="me.kafeitu.demo.activiti.util.ProcessDefinitionCache,org.activiti.engine.RepositoryService"%>
+<%@page import="org.activiti.engine.ProcessEngine"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,7 +32,8 @@
 
 <body>
 	<%
-	RepositoryService repositoryService = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext()).getBean(org.activiti.engine.RepositoryService.class);
+	ProcessEngine processEngine = (ProcessEngine)WebApplicationContextUtils.getWebApplicationContext(session.getServletContext()).getBean("processEngine");
+	RepositoryService repositoryService = processEngine.getRepositoryService();
 	ProcessDefinitionCache.setRepositoryService(repositoryService);
 	%>
 	<table>

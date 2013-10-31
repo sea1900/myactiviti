@@ -19,7 +19,7 @@
 	<!-- properties文件Servlet -->
 	<servlet>
 		<servlet-name>PropertiesServlet</servlet-name>
-		<servlet-class>me.kafeitu.modules.web.servlet.PropertiesServlet</servlet-class>
+		<servlet-class>com.ces.common.servlet.PropertiesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>

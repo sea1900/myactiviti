@@ -6,8 +6,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-import me.kafeitu.demo.activiti.service.oa.leave.LeaveWorkflowService;
-
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
 import org.activiti.engine.repository.ProcessDefinition;
@@ -15,8 +13,6 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.ces.common.service.impl.CommonServiceImpl;
 import com.ces.common.webbean.Page;
@@ -24,9 +20,6 @@ import com.ces.leave.entity.Leave;
 import com.ces.leave.service.LeaveService;
 
 public class LeaveServiceImpl extends CommonServiceImpl implements LeaveService {
-
-	private static Logger logger = LoggerFactory
-			.getLogger(LeaveWorkflowService.class);
 
 	/**
 	 * 启动流程
@@ -40,7 +33,7 @@ public class LeaveServiceImpl extends CommonServiceImpl implements LeaveService 
 		entity.setRealityStartTime(new Timestamp(c.getTimeInMillis()));
 		entity.setRealityEndTime(new Timestamp(c.getTimeInMillis()));
 		save(entity);
-		logger.debug("save entity: {}", entity);
+		logger.debug("save entity: {}" + entity);
 		String businessKey = entity.getId().toString();
 
 		// 用来设置启动流程的人员ID，引擎会自动把用户ID保存到activiti:initiator中
@@ -50,10 +43,9 @@ public class LeaveServiceImpl extends CommonServiceImpl implements LeaveService 
 				.startProcessInstanceByKey("leave", businessKey, variables);
 		String processInstanceId = processInstance.getId();
 		entity.setProcessInstanceId(processInstanceId);
-		logger.debug(
-				"start process of {key={}, bkey={}, pid={}, variables={}}",
-				new Object[] { "leave", businessKey, processInstanceId,
-						variables });
+		logger.debug("start process of {key={" + "leave" + "}, bkey={"
+				+ businessKey + "}, pid={" + processInstanceId
+				+ "}, variables={" + variables + "}}");
 		return processInstance;
 	}
 

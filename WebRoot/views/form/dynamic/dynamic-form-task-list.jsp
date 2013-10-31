@@ -21,7 +21,7 @@
 	<script src="${ctx }/jquery/plugins/qtip/jquery.qtip.pack.js" type="text/javascript"></script>
 	<script src="${ctx }/jquery/plugins/html/jquery.outerhtml.js" type="text/javascript"></script>
 	<script src="${ctx }/jquery/plugins/blockui/jquery.blockUI.js" type="text/javascript"></script>
-	<script src="${ctx }/jquerycommon.js" type="text/javascript"></script>
+	<script src="${ctx }/jquery/common.js" type="text/javascript"></script>
 	<script src="${ctx }/js/activiti/workflow.js" type="text/javascript"></script>
 	<script src="${ctx }/js/form/dynamic/dynamic-form-handler.js" type="text/javascript"></script>
 </head>
@@ -65,7 +65,7 @@
 			<td>${task.owner }</td>
 			<td>
 				<c:if test="${empty task.assignee }">
-					<a class="claim" href="${ctx }/form/dynamic/task/claim/${task.id}">签收</a>
+					<a class="claim" href="${ctx }/dynamicForm_claim.action?taskId=${task.id}">签收</a>
 				</c:if>
 				<c:if test="${not empty task.assignee }">
 					<%-- 此处用tkey记录当前节点的名称 --%>

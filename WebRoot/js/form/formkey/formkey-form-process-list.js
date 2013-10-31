@@ -42,14 +42,14 @@ function readForm(processDefinitionId) {
 	var dialog = this;
 
 	// 读取启动时的表单
-	$.get(ctx + '/form/formkey/get-form/start/' + processDefinitionId, function(form) {
+	$.get(ctx + '/formKey_receiveStartForm.action?processDefinitionId=' + processDefinitionId, function(form) {
 		// 获取的form是字符行，html格式直接显示在对话框内就可以了，然后用form包裹起来
 		$(dialog).html(form).wrap("<form class='formkey-form' method='post' />");
 
 		var $form = $('.formkey-form');
 
 		// 设置表单action
-		$form.attr('action', ctx + '/form/formkey/start-process/' + processDefinitionId);
+		$form.attr('action', ctx + '/formKey_startProcess.action?processDefinitionId=' + processDefinitionId);
 
 		// 初始化日期组件
 		$form.find('.datetime').datetimepicker({

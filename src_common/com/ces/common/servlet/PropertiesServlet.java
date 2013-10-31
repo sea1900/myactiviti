@@ -1,4 +1,4 @@
-package me.kafeitu.modules.web.servlet;
+package com.ces.common.servlet;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Set;
+
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -20,10 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.kafeitu.demo.activiti.util.LinkedProperties;
 import me.kafeitu.demo.activiti.util.PropertyFileUtil;
+
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 /**
  * classpath下面的属性配置文件读取初始化类
@@ -31,7 +32,7 @@ import org.slf4j.LoggerFactory;
 public class PropertiesServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    protected Logger logger = LoggerFactory.getLogger(getClass());
+    protected Logger logger = Logger.getLogger(getClass());
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -92,7 +93,7 @@ public class PropertiesServlet extends HttpServlet {
                 PropertyFileUtil.init(profile);
 
                 setParameterToServerContext(req.getSession().getServletContext());
-                logger.info("++++ 已完成属性配置文件重载任务 ++++，{IP={}}", req.getRemoteAddr());
+                logger.info("++++ 已完成属性配置文件重载任务 ++++，{IP="+ req.getRemoteAddr()+"}");
                 resp.getWriter().print("<b>属性文件重载成功！</b><br/>");
                 writeProperties(resp);
             } catch (IOException e) {
@@ -262,7 +263,7 @@ public class PropertiesServlet extends HttpServlet {
             props.load(inputStream);
             Set<Object> fileKeySet = props.keySet();
             for (Object obj : fileKeySet) {
-                logger.debug("读取文件:key={}, value={}", obj, props.getProperty(obj.toString()));
+                logger.debug("读取文件:key={"+obj+"}, value={"+props.getProperty(obj.toString())+"}");
                 sb.append("<span style='color:red;font-weight:bold;'>" + props.getProperty(obj.toString()) + "</span><br/>");
                 if (props.getProperty(obj.toString()).startsWith("file:")) {
                     File file = new File(props.getProperty(obj.toString()).split(":")[1]);

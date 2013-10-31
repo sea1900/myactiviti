@@ -14,6 +14,7 @@
 		<property name="identityService" ref="identityService" />
 		<property name="taskService" ref="taskService" />
 		<property name="historyService" ref="historyService" />
+		<property name="managementService" ref="managementService" />
 	</bean>
 
 	<bean id="commonAction" class="com.ces.common.action.CommonAction" parent="baseAction">
@@ -24,6 +25,7 @@
 		<property name="identityService" ref="identityService" />
 		<property name="taskService" ref="taskService" />
 		<property name="historyService" ref="historyService" />
+		<property name="managementService" ref="managementService" />
 	</bean>
 
 </beans>

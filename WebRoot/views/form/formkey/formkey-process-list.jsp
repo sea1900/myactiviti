@@ -19,7 +19,7 @@
 	<script src="${ctx }/jquery/plugins/validate/jquery.validate.pack.js" type="text/javascript"></script>
 	<script src="${ctx }/jquery/plugins/validate/messages_cn.js" type="text/javascript"></script>
 	<script src="${ctx }/jquery/plugins/qtip/jquery.qtip.pack.js" type="text/javascript"></script>
-	<script src="${ctx }/jquerycommon.js" type="text/javascript"></script>
+	<script src="${ctx }/jquery/common.js" type="text/javascript"></script>
 	<script src="${ctx }/js/form/formkey/formkey-form-process-list.js" type="text/javascript"></script>
 </head>
 
@@ -54,8 +54,8 @@
 					<td class='process-name'>${process.name }</td>
 					<td>${process.key }</td>
 					<td>${process.version }</td>
-					<td><a target="_blank" href='${ctx }/workflow/resource/read?processDefinitionId=${process.id}&resourceType=xml'>${process.resourceName }</a></td>
-					<td><a target="_blank" href='${ctx }/workflow/resource/read?processDefinitionId=${process.id}&resourceType=image'>${process.diagramResourceName }</a></td>
+					<td><a target="_blank" href='${ctx }/workflow_loadByDeployment.action?processDefinitionId=${process.id}&resourceType=xml'>${process.resourceName }</a></td>
+					<td><a target="_blank" href='${ctx }/workflow_loadByDeployment.action?processDefinitionId=${process.id}&resourceType=image'>${process.diagramResourceName }</a></td>
 					<td><a class="startup-process">启动</a></td>
 				</tr>
 			</c:forEach>

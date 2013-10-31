@@ -55,10 +55,10 @@ function readFormFields(taskId) {
 	var $form = $('.dynamic-form');
 
 	// 设置表单提交id
-	$form.attr('action', ctx + '/form/dynamic/task/complete/' + taskId);
+	$form.attr('action', ctx + '/dynamicForm_fulfill.action?taskId=' + taskId);
 
 	// 读取启动时的表单
-	$.getJSON(ctx + '/form/dynamic/get-form/task/' + taskId, function(datas) {
+	$.getJSON(ctx + '/dynamicForm_receiveTaskForm.action?taskId=' + taskId, function(datas) {
 		var trs = "";
 		$.each(datas.taskFormData.formProperties, function() {
 			var className = this.required === true ? "required" : "";

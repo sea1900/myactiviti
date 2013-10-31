@@ -46,10 +46,10 @@ function readFormFields(processDefinitionId) {
 	var $form = $('.dynamic-form');
 
 	// 设置表单提交id
-	$form.attr('action', ctx + '/form/dynamic/start-process/' + processDefinitionId);
+	$form.attr('action', ctx + '/dynamicForm_startProcess.action?processDefinitionId=' + processDefinitionId);
 
 	// 读取启动时的表单
-	$.getJSON(ctx + '/form/dynamic/get-form/start/' + processDefinitionId, function(data) {
+	$.getJSON(ctx + '/dynamicForm_receiveStartForm.action?processDefinitionId=' + processDefinitionId, function(data) {
 		var trs = "";
 		$.each(data.form.formProperties, function() {
 			var className = this.required === true ? "required" : "";

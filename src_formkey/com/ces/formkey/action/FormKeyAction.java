@@ -9,9 +9,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import me.kafeitu.demo.activiti.util.UserUtil;
-import net.sf.json.JSONObject;
-
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
 import org.activiti.engine.identity.User;
@@ -27,7 +24,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.ces.common.action.CommonAction;
 import com.ces.common.utils.PageUtil;
 import com.ces.common.webbean.Page;
-import com.ces.framework.json.util.JsonConverter;
 
 /**
  * 外置表单Controller 了解不同表单请访问：
@@ -134,7 +130,7 @@ public class FormKeyAction extends CommonAction {
 
 		logger.debug("start form parameters: {" + formProperties + "}");
 
-		User user = UserUtil.getUserFromSession(request.getSession());
+		User user = (User)session.get("user");
 
 		// 用户未登录不能操作，实际应用使用权限框架实现，例如Spring Security、Shiro等
 		if (user == null || StringUtils.isBlank(user.getId())) {
@@ -177,7 +173,7 @@ public class FormKeyAction extends CommonAction {
 
 		logger.debug("start form parameters: {" + formProperties + "}");
 
-		User user = UserUtil.getUserFromSession(request.getSession());
+		User user = (User)session.get("user");
 		// 用户未登录不能操作，实际应用使用权限框架实现，例如Spring Security、Shiro等
 		if (user == null || StringUtils.isBlank(user.getId())) {
 			return "redirect:/login?timeout=true";
@@ -208,7 +204,7 @@ public class FormKeyAction extends CommonAction {
 	 * @return
 	 */
 	public String taskList() {
-		User user = UserUtil.getUserFromSession(request.getSession());
+		User user = (User)session.get("user");
 		Page<Task> page = new Page<Task>(PageUtil.PAGE_SIZE);
 		int[] pageParams = PageUtil.init(page, request);
 
@@ -252,7 +248,7 @@ public class FormKeyAction extends CommonAction {
 	 */
 	public String claim() {
 		String taskId = request.getParameter("taskId");
-		String userId = UserUtil.getUserFromSession(session).getId();
+		String userId = ((User)session.get("user")).getId();
 		taskService.claim(taskId, userId);
 
 		String message = "任务已签收";

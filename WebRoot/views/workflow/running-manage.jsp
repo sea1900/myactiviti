@@ -1,5 +1,5 @@
 <%@page import="org.activiti.engine.ProcessEngine"%>
-<%@page import="me.kafeitu.demo.activiti.util.ProcessDefinitionCache,org.activiti.engine.RepositoryService"%>
+<%@page import="com.ces.process.cache.ProcessDefinitionCache,org.activiti.engine.RepositoryService"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -61,7 +61,11 @@
 			<td>${p.id }</td>
 			<td>${p.processInstanceId }</td>
 			<td>${p.processDefinitionId }</td>
-			<td><a class="trace" href='#' pid="${p.id }" title="点击查看流程图"><%=ProcessDefinitionCache.getActivityName(pageContext.getAttribute("pdid").toString(), ObjectUtils.toString(pageContext.getAttribute("activityId"))) %></a></td>
+			<td>
+				<a class="trace" href='#' pid="${p.id }" title="点击查看流程图">
+					<%=ProcessDefinitionCache.getActivityName(pageContext.getAttribute("pdid").toString(), ObjectUtils.toString(pageContext.getAttribute("activityId"))) %>
+				</a>
+			</td>
 			<td>${p.suspended }</td>
 			<td>
 				<c:if test="${p.suspended }">

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import me.kafeitu.demo.activiti.util.WorkflowUtils;
 
 import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.identity.User;
@@ -26,6 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import com.ces.common.service.impl.CommonServiceImpl;
 import com.ces.process.service.WorkflowTraceService;
+import com.ces.process.utils.WorkflowUtils;
 
 /**
  * 工作流跟踪相关Service
@@ -61,17 +61,10 @@ public class WorkflowTraceServiceImpl extends CommonServiceImpl implements
 				.getDeployedProcessDefinition(processInstance
 						.getProcessDefinitionId());
 
-		Class<?>[] cs = repositoryService.getClass().getInterfaces();
-		for (Class<?> c : cs) {
-			if(c.isInstance(repositoryServiceImpl)) {
-				System.out.println(true);
-			}
-		}
 		// ProcessDefinitionEntity processDefinition = (ProcessDefinitionEntity)
 		// ((RepositoryServiceImpl) repositoryService)
 		// .getDeployedProcessDefinition(processInstance
 		// .getProcessDefinitionId());
-		// ProcessDefinition processDefinition2;
 		List<ActivityImpl> activitiList = processDefinition.getActivities();// 获得当前任务的所有节点
 
 		List<Map<String, Object>> activityInfos = new ArrayList<Map<String, Object>>();

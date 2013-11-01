@@ -6,9 +6,6 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.kafeitu.demo.activiti.util.UserUtil;
-import me.kafeitu.demo.activiti.util.Variable;
-
 import org.activiti.engine.ActivitiException;
 import org.activiti.engine.identity.User;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -17,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.ces.common.action.CommonAction;
 import com.ces.common.utils.PageUtil;
 import com.ces.common.webbean.Page;
+import com.ces.common.webbean.Variable;
 import com.ces.framework.json.util.JsonConverter;
 import com.ces.leave.entity.Leave;
 import com.ces.leave.service.LeaveService;
@@ -46,7 +44,7 @@ public class LeaveAction extends CommonAction {
 	public String start() {
 		String message = "";
 		try {
-			User user = UserUtil.getUserFromSession(session);
+			User user = (User)session.get("user");
 			// 用户未登录不能操作，实际应用使用权限框架实现，例如Spring Security、Shiro等
 			if (user == null || StringUtils.isBlank(user.getId())) {
 				return "redirect:/login?timeout=true";
@@ -87,7 +85,7 @@ public class LeaveAction extends CommonAction {
 		Page<Leave> page = new Page<Leave>(PageUtil.PAGE_SIZE);
 		int[] pageParams = PageUtil.init(page, request);
 
-		String userId = UserUtil.getUserFromSession(session).getId();
+		String userId = ((User)session.get("user")).getId();
 		leaveService.findTodoTasks(userId, page, pageParams);
 
 		session.put("page", page);
@@ -134,7 +132,7 @@ public class LeaveAction extends CommonAction {
 	public String claim() {
 		String taskId = request.getParameter("taskId");
 
-		String userId = UserUtil.getUserFromSession(session).getId();
+		String userId = ((User)session.get("user")).getId();
 		taskService.claim(taskId, userId);
 		try {
 			setRedirectJsp("leave_taskList.action?message="

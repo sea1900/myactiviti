@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src_me"/>
-	<classpathentry kind="src" path="config"/>
-	<classpathentry kind="src" path="src_system"/>
-	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src_general"/>
+	<classpathentry kind="src" path="src_common"/>
+	<classpathentry kind="src" path="src_process"/>
+	<classpathentry kind="src" path="src_leave"/>
 	<classpathentry kind="src" path="src_dynamic"/>
 	<classpathentry kind="src" path="src_formkey"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="src_process"/>
-	<classpathentry kind="src" path="src_common"/>
-	<classpathentry kind="src" path="src_leave"/>
+	<classpathentry kind="src" path="config"/>
+	<classpathentry kind="src" path="config-modeler"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="src" path="src_system"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="src" path="src_framework"/>
@@ -111,7 +111,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-log4j12-1.7.5.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-aop-3.2.0.M1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-asm-3.2.0.M1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-beans-3.2.0.M1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-beans-3.2.0.M1.jar" sourcepath="G:/document/spring-3.2.0.M1/libs/spring-beans-3.2.0.M1-sources.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-context-3.2.0.M1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-core-3.2.0.M1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-data-commons-1.5.2.RELEASE.jar"/>

@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import me.kafeitu.demo.activiti.util.UserUtil;
-
 import org.activiti.engine.form.FormProperty;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
@@ -165,7 +163,7 @@ public class DynamicFormAction extends CommonAction {
 
 		logger.debug("start form parameters: {" + formProperties + "}");
 
-		User user = UserUtil.getUserFromSession(request.getSession());
+		User user = (User)session.get("user");
 
 		// 用户未登录不能操作，实际应用使用权限框架实现，例如Spring Security、Shiro等
 		if (user == null || StringUtils.isBlank(user.getId())) {
@@ -208,7 +206,7 @@ public class DynamicFormAction extends CommonAction {
 
 		logger.debug("start form parameters: {" + formProperties + "}");
 
-		User user = UserUtil.getUserFromSession(session);
+		User user = (User)session.get("user");
 		// 用户未登录不能操作，实际应用使用权限框架实现，例如Spring Security、Shiro等
 		if (user == null || StringUtils.isBlank(user.getId())) {
 			return "redirect:/login?timeout=true";
@@ -238,7 +236,7 @@ public class DynamicFormAction extends CommonAction {
 	 * @return
 	 */
 	public String taskList() {
-		User user = UserUtil.getUserFromSession(session);
+		User user = (User)session.get("user");
 
 		List<Task> tasks = new ArrayList<Task>();
 
@@ -288,7 +286,7 @@ public class DynamicFormAction extends CommonAction {
 	 */
 	public String claim() {
 		String taskId = request.getParameter("taskId");
-		String userId = UserUtil.getUserFromSession(session).getId();
+		String userId = ((User)session.get("user")).getId();
 		taskService.claim(taskId, userId);
 		String message = "任务已签收";
 

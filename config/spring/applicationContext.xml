@@ -8,7 +8,7 @@
 
 	<!--引入配置properties文件 -->
 	<context:property-placeholder  ignore-unresolvable="true" local-override="true"
-		location="classpath:db.properties,classpath:activiti.properties" />
+		location="classpath:db.properties,classpath:application.properties" />
     
 	<!---->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"

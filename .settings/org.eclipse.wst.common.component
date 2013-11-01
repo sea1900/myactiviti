@@ -9,11 +9,11 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_general"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_dynamic"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_formkey"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_me"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_process"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_common"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_leave"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/config-modeler"/>
         <property name="context-root" value="/MyActiviti"/>
         <property name="java-output-path" value="/MyActiviti/WebRoot/WEB-INF/classes"/>
     </wb-module>

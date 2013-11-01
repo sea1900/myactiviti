@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.zip.ZipInputStream;
 
-import me.kafeitu.demo.activiti.util.WorkflowUtils;
 
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.repository.Deployment;
@@ -19,6 +18,7 @@ import org.springframework.core.io.ResourceLoader;
 
 import com.ces.common.service.impl.CommonServiceImpl;
 import com.ces.process.service.ProcessDefinitionService;
+import com.ces.process.utils.WorkflowUtils;
 
 /**
  * 工作流中流程以及流程实例相关Service

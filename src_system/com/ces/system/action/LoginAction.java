@@ -69,7 +69,7 @@ public class LoginAction extends CommonAction {
 
 				String[] groupNames = new String[groupList.size()];
 				for (int i = 0; i < groupNames.length; i++) {
-					System.out.println(groupList.get(i).getName());
+					//System.out.println(groupList.get(i).getName());
 					groupNames[i] = groupList.get(i).getName();
 				}
 

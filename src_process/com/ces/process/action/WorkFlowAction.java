@@ -18,7 +18,6 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
-import me.kafeitu.demo.activiti.util.WorkflowUtils;
 
 import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.BpmnModel;
@@ -49,6 +48,7 @@ import com.ces.framework.json.util.JsonConverter;
 import com.ces.framework.util.PropUtils;
 import com.ces.process.service.ProcessDefinitionService;
 import com.ces.process.service.WorkflowTraceService;
+import com.ces.process.utils.WorkflowUtils;
 
 public class WorkFlowAction extends CommonAction {
 	/**
@@ -97,7 +97,6 @@ public class WorkFlowAction extends CommonAction {
 		page.setTotalCount(processDefinitionQuery.count());
 		page.setResult(objects);
 		session.put("page", page);
-
 		String message = request.getParameter("message");
 		request.setAttribute("message", message);
 
@@ -219,7 +218,7 @@ public class WorkFlowAction extends CommonAction {
 	}
 
 	/**
-	 * 输出跟踪流程信息
+	 * 输出跟踪流程信息,红圈
 	 * 
 	 */
 	public String traceProcess() {

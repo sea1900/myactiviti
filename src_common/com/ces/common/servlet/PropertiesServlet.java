@@ -19,15 +19,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import me.kafeitu.demo.activiti.util.LinkedProperties;
-import me.kafeitu.demo.activiti.util.PropertyFileUtil;
-
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+
+import com.ces.common.utils.PropertyFileUtil;
+import com.ces.common.webbean.LinkedProperties;
 
 /**
- * classpath下面的属性配置文件读取初始化类
+ * classpath下面的属性配置文件初始化读取类
  */
 public class PropertiesServlet extends HttpServlet {
 

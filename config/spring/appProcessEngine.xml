@@ -28,7 +28,7 @@
 
         <!-- 缓存支持
         <property name="processDefinitionCache">
-            <bean class="me.kafeitu.demo.activiti.util.cache.DistributedCache" />
+            <bean class="com.ces.process.cache.DistributedCache" />
         </property>-->
 
         <!-- 自动部署-->
@@ -38,13 +38,13 @@
             </list>
         </property>
  		
-        <!-- 自定义表单字段类型 
+        <!-- 自定义表单字段类型 -->
         <property name="customFormTypes">
             <list>
-                <bean class="me.kafeitu.demo.activiti.activiti.form.UsersFormType"/>
+                <bean class="com.ces.leave.form.UsersFormType"/>
             </list>
         </property>
-        -->
+        
     </bean>
 
     <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
